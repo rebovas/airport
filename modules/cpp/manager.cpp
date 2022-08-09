@@ -70,38 +70,6 @@ manager::manager(RenderWindow *window, Sprite background, Text &text)
     window->display();
 };
 
-template<typename typePlane>
-message<typePlane> manager::generateMsg(typePlane plane)
-{
-    default_random_engine generator;
-    generator.seed(time(0));
-    uniform_int_distribution<int> distribution(1, 50);
-    distribution(generator);
-
-    message<typePlane> msg;
-    string typeAction = distribution(generator) % 2 == 0 ? "takeoff" : "landing";
-    string strMessage = "Request on " + typeAction + "\n" + "Airship model: " + plane.getName() + "\n";
-
-    if (typeAction == "takeoff")
-    {
-        strMessage += "Level fuel in percent: " + to_string(plane.getPerLvlFuel()) + "%\n";
-        msg.action = typeAction::Takeoff;
-    }
-    else
-    {
-        strMessage += "Additional weight = " + to_string(plane.getAddWeight()) + " is "
-            + to_string(plane.getMaxAddWeight()) + "\n"; 
-        msg.action = typeAction::Landing;
-    }
-
-    msg.generateMsg = strMessage;
-    msg.plane = plane;
-
-    cout << msg.generateMsg;
-    return msg;
-    
-};
-
 anwManager manager::getResultManager(message<boeing_787> msg)
 {
     anwManager answer;

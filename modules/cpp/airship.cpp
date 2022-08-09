@@ -1,7 +1,39 @@
-#include "../airship.h"
+#include "../manager.h"
 #include <random>
+#include <iostream>
 
 
+template<typename typePlane>
+message<typePlane> airship::generateMsg(manager mgr)
+{
+    default_random_engine generator;
+    generator.seed(time(0));
+    uniform_int_distribution<int> distribution(1, 50);
+    distribution(generator);
+
+    message<typePlane> msg;
+    string typeAction = distribution(generator) % 2 == 0 ? "takeoff" : "landing";
+    string strMessage = "Request on " + typeAction + "\n" + "Airship model: " + this->name + "\n";
+
+    if (typeAction == "takeoff")
+    {
+        strMessage += "Level fuel in percent: " + to_string(this->getPerLvlFuel()) + "%\n";
+        msg.action = typeAction::Takeoff;
+    }
+    else
+    {
+        strMessage += "Additional weight = " + to_string(this->addWeight) + " is "
+            + to_string(this->maxAddWeight) + "\n"; 
+        msg.action = typeAction::Landing;
+    }
+
+    msg.generateMsg = strMessage;
+    msg.plane = this;
+
+    cout << msg.generateMsg;
+    return msg;
+    
+};
 
 void ClearPolEvent(RenderWindow *window)
 {

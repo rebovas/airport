@@ -39,8 +39,6 @@ class manager
 
     public:
         manager(RenderWindow *window, Sprite background, Text &text);
-        template<typename typePlane>
-        message<typePlane> generateMsg(typePlane plane);
         void update(RenderWindow *window, Sprite background, Text &text);
         anwManager getResultManager(message<boeing_787> msg);
         anwManager getResultManager(message<cessnaM> msg);

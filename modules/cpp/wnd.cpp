@@ -93,9 +93,9 @@ int mapping::createWindow()
 
             switch((modelPlane)(distributionPlane(generator) % 3))
             {
-                case modelPlane::Boeing787:anwMan = manager.getResultManager(manager.generateMsg<boeing_787>(boeing)); break;
-                case modelPlane::CessnaCitation:anwMan = manager.getResultManager(manager.generateMsg<cessnaM>(cessnaJet)); break;
-                case modelPlane::CirrusSR:anwMan = manager.getResultManager(manager.generateMsg<cirrus>(cirrusSR)); break;
+                case modelPlane::Boeing787:anwMan = manager.getResultManager(boeing.generateMsg<boeing_787>(manager)); break;
+                case modelPlane::CessnaCitation:anwMan = manager.getResultManager(cessnaJet.generateMsg<cessnaM>(manager)); break;
+                case modelPlane::CirrusSR:anwMan = manager.getResultManager(cirrusSR.generateMsg<cirrus>(manager)); break;
                 default: break;
             }
 

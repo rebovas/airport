@@ -3,6 +3,12 @@
 using namespace sf;
 using namespace std;
 
+
+template<typename typePlane>
+struct message;
+class manager;
+void ClearPolEvent(RenderWindow *window);
+
 class airship
 {
     protected:
@@ -28,6 +34,8 @@ class airship
         int getPerLvlFuel();
         int getMaxAddWeight();
         void updateVarParam();
+        template<typename typePlane>
+        message<typePlane> generateMsg(manager mgr);
 };
 
 class boeing_787 : public airship
