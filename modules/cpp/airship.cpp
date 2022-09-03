@@ -1,39 +1,4 @@
-#include "../manager.h"
-#include <random>
-#include <iostream>
-
-
-template<typename typePlane>
-message<typePlane> airship::generateMsg(manager mgr)
-{
-    default_random_engine generator;
-    generator.seed(time(0));
-    uniform_int_distribution<int> distribution(1, 50);
-    distribution(generator);
-
-    message<typePlane> msg;
-    string typeAction = distribution(generator) % 2 == 0 ? "takeoff" : "landing";
-    string strMessage = "Request on " + typeAction + "\n" + "Airship model: " + this->name + "\n";
-
-    if (typeAction == "takeoff")
-    {
-        strMessage += "Level fuel in percent: " + to_string(this->getPerLvlFuel()) + "%\n";
-        msg.action = typeAction::Takeoff;
-    }
-    else
-    {
-        strMessage += "Additional weight = " + to_string(this->addWeight) + " is "
-            + to_string(this->maxAddWeight) + "\n"; 
-        msg.action = typeAction::Landing;
-    }
-
-    msg.generateMsg = strMessage;
-    msg.plane = this;
-
-    cout << msg.generateMsg;
-    return msg;
-    
-};
+#include "../airship.h"
 
 void ClearPolEvent(RenderWindow *window)
 {
@@ -185,7 +150,7 @@ cirrus::cirrus(Sprite sprite, Texture texture, int index)
     this->sprite.setTexture(this->texture);
 };
 
-int boeing_787::takeoff(RenderWindow *window, Sprite background, Text text)
+int boeing_787::landing(RenderWindow *window, Sprite background, Text text)
 {
     ClearPolEvent(window);
     this->sprite.setPosition(-300, 550);
@@ -235,7 +200,7 @@ int boeing_787::takeoff(RenderWindow *window, Sprite background, Text text)
     return 0;
 };
 
-int cessnaM::takeoff(RenderWindow *window, Sprite background, Text text)
+int cessnaM::landing(RenderWindow *window, Sprite background, Text text)
 {
     ClearPolEvent(window);
     this->sprite.setPosition(-350, 580);
@@ -284,7 +249,7 @@ int cessnaM::takeoff(RenderWindow *window, Sprite background, Text text)
     return 0;
 };
 
-int cirrus::takeoff(RenderWindow *window, Sprite background, Text text)
+int cirrus::landing(RenderWindow *window, Sprite background, Text text)
 {
     ClearPolEvent(window);
     this->sprite.setPosition(-350, 640);
@@ -333,7 +298,7 @@ int cirrus::takeoff(RenderWindow *window, Sprite background, Text text)
     return 0;
 };
 
-int boeing_787::landing(RenderWindow *window, Sprite background, Text text)
+int boeing_787::takeoff(RenderWindow *window, Sprite background, Text text)
 {
     ClearPolEvent(window);
     this->sprite.setPosition(0, 610);
@@ -384,7 +349,7 @@ int boeing_787::landing(RenderWindow *window, Sprite background, Text text)
 };
 
 
-int cessnaM::landing(RenderWindow *window, Sprite background, Text text)
+int cessnaM::takeoff(RenderWindow *window, Sprite background, Text text)
 {
     ClearPolEvent(window);
     this->sprite.setPosition(0, 670);
@@ -434,7 +399,7 @@ int cessnaM::landing(RenderWindow *window, Sprite background, Text text)
     return 0;
 };
 
-int cirrus::landing(RenderWindow *window, Sprite background, Text text)
+int cirrus::takeoff(RenderWindow *window, Sprite background, Text text)
 {
     this->sprite.setPosition(0, 720);
     window->clear();
@@ -550,3 +515,100 @@ void airship::updateVarParam()
 
     this->addWeight = distribution(generator);
 };
+
+message<boeing_787> boeing_787::generateMsg()
+{
+
+    default_random_engine generator;
+    generator.seed(time(0));
+    uniform_int_distribution<int> distribution(1, 50);
+    distribution(generator);
+
+    message<boeing_787> msg;
+    string typeAction = distribution(generator) % 2 == 0 ? "takeoff" : "landing";
+    string strMessage = "Request on " + typeAction + "\n" + "Airship model: " + this->name + "\n";
+
+    if (typeAction == "takeoff")
+    {
+         strMessage += "Level fuel in percent: " + to_string(this->getPerLvlFuel()) + "%\n";
+         msg.action = typeAction::Takeoff;
+    }
+    else
+    {
+        strMessage += "Additional weight = " + to_string(this->addWeight) + " is "
+            + to_string(this->maxAddWeight) + "\n"; 
+        msg.action = typeAction::Landing;
+}
+
+    msg.generateMsg = strMessage;
+    msg.plane = *this;
+
+    cout << msg.generateMsg;
+    return msg;
+
+}
+
+message<cessnaM> cessnaM::generateMsg()
+{
+
+    default_random_engine generator;
+    generator.seed(time(0));
+    uniform_int_distribution<int> distribution(1, 50);
+    distribution(generator);
+
+    message<cessnaM> msg;
+    string typeAction = distribution(generator) % 2 == 0 ? "takeoff" : "landing";
+    string strMessage = "Request on " + typeAction + "\n" + "Airship model: " + this->name + "\n";
+
+    if (typeAction == "takeoff")
+    {
+         strMessage += "Level fuel in percent: " + to_string(this->getPerLvlFuel()) + "%\n";
+         msg.action = typeAction::Takeoff;
+    }
+    else
+    {
+        strMessage += "Additional weight = " + to_string(this->addWeight) + " is "
+            + to_string(this->maxAddWeight) + "\n"; 
+        msg.action = typeAction::Landing;
+}
+
+    msg.generateMsg = strMessage;
+    msg.plane = *this;
+
+    cout << msg.generateMsg;
+    return msg;
+
+}
+
+message<cirrus> cirrus::generateMsg()
+{
+
+    default_random_engine generator;
+    generator.seed(time(0));
+    uniform_int_distribution<int> distribution(1, 50);
+    distribution(generator);
+
+    message<cirrus> msg;
+    string typeAction = distribution(generator) % 2 == 0 ? "takeoff" : "landing";
+    string strMessage = "Request on " + typeAction + "\n" + "Airship model: " + this->name + "\n";
+
+    if (typeAction == "takeoff")
+    {
+         strMessage += "Level fuel in percent: " + to_string(this->getPerLvlFuel()) + "%\n";
+         msg.action = typeAction::Takeoff;
+    }
+    else
+    {
+        strMessage += "Additional weight = " + to_string(this->addWeight) + " is "
+            + to_string(this->maxAddWeight) + "\n"; 
+        msg.action = typeAction::Landing;
+}
+
+    msg.generateMsg = strMessage;
+    msg.plane = *this;
+
+    cout << msg.generateMsg;
+    return msg;
+
+}
+

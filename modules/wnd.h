@@ -1,4 +1,7 @@
+#pragma once
 #include "SFML/Graphics.hpp"
+#include "manager.h"
+
 #define TITLE "Airport"
 #define BGFILENAME "airport.png"
 #define LENGHTWND 1800

@@ -1,12 +1,22 @@
+#pragma once
 #include "SFML/Graphics.hpp"
+#include <random>
+#include <iostream>
+#include <type_traits>
 
 using namespace sf;
 using namespace std;
 
+enum typeAction {Takeoff, Landing};
 
 template<typename typePlane>
-struct message;
-class manager;
+struct message
+{
+    string generateMsg;
+    typeAction action;
+    typePlane plane;
+};
+
 void ClearPolEvent(RenderWindow *window);
 
 class airship
@@ -34,8 +44,6 @@ class airship
         int getPerLvlFuel();
         int getMaxAddWeight();
         void updateVarParam();
-        template<typename typePlane>
-        message<typePlane> generateMsg(manager mgr);
 };
 
 class boeing_787 : public airship
@@ -45,7 +53,7 @@ class boeing_787 : public airship
         boeing_787(Sprite sprite, Texture texture, int index);
         int takeoff(RenderWindow *window, Sprite background, Text text) override;
         int landing(RenderWindow *window, Sprite background, Text text) override;
-
+        message<boeing_787> generateMsg();
 };
 
 class cessnaM : public airship
@@ -55,6 +63,7 @@ class cessnaM : public airship
         cessnaM(Sprite sprite, Texture texture, int index);
         int takeoff(RenderWindow *window, Sprite background, Text text) override;
         int landing(RenderWindow *window, Sprite background, Text text) override;
+        message<cessnaM> generateMsg();
 };
 
 
@@ -65,4 +74,5 @@ class cirrus : public airship
         cirrus(Sprite sprite, Texture texture, int index);
         int takeoff(RenderWindow *window, Sprite background, Text text) override;
         int landing(RenderWindow *window, Sprite background, Text text) override;
+        message<cirrus> generateMsg();
 };

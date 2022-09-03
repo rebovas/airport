@@ -1,4 +1,4 @@
-#include "../modules/cpp/wnd.cpp"
+#include "../modules/wnd.h"
 
 int main()
 {

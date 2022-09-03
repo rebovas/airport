@@ -1,22 +1,20 @@
+#pragma once
 #include "SFML/Graphics.hpp"
 #include <random>
 #include <time.h>
+#include <math.h>
+#include <type_traits>
 #include "airship.h"
+#include <iostream>
 
 using namespace sf;
 using namespace std;
 
 enum levelRain {Nope, Light, Medium, Heavy};
-enum typeAction {Takeoff, Landing};
 enum modelPlane {Boeing787, CessnaCitation, CirrusSR};
 
 template<typename typePlane>
-struct message
-{
-    string generateMsg;
-    typeAction action;
-    typePlane plane;
-};
+struct message;
 
 struct anwManager
 {

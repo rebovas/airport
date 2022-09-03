@@ -1,6 +1,5 @@
-#pragma once
 #include "../wnd.h" 
-#include "manager.cpp"
+
 #define PATHIMGS "../img/"
 
 void sizeWindow::setMembers(int len, int wid)
@@ -93,9 +92,9 @@ int mapping::createWindow()
 
             switch((modelPlane)(distributionPlane(generator) % 3))
             {
-                case modelPlane::Boeing787:anwMan = manager.getResultManager(boeing.generateMsg<boeing_787>(manager)); break;
-                case modelPlane::CessnaCitation:anwMan = manager.getResultManager(cessnaJet.generateMsg<cessnaM>(manager)); break;
-                case modelPlane::CirrusSR:anwMan = manager.getResultManager(cirrusSR.generateMsg<cirrus>(manager)); break;
+                case modelPlane::Boeing787:anwMan = manager.getResultManager(boeing.generateMsg()); break;
+                case modelPlane::CessnaCitation:anwMan = manager.getResultManager(cessnaJet.generateMsg()); break;
+                case modelPlane::CirrusSR:anwMan = manager.getResultManager(cirrusSR.generateMsg()); break;
                 default: break;
             }
 

@@ -1,7 +1,4 @@
 #include "../manager.h"
-#include <math.h>
-#include <type_traits>
-#include <iostream>
 
 using namespace std;
 
@@ -75,9 +72,9 @@ anwManager manager::getResultManager(message<boeing_787> msg)
     anwManager answer;
     answer.model = modelPlane::Boeing787;
 
-    if(msg.action == typeAction::Takeoff)
+    if(msg.action == typeAction::Landing)
     {
-        answer.action = typeAction::Takeoff;
+        answer.action = typeAction::Landing;
 
         if(this->windSpeed >= 18.f && msg.plane.getPerLvlFuel() > 10)
         {
@@ -98,7 +95,7 @@ anwManager manager::getResultManager(message<boeing_787> msg)
     }
     else
     {
-        answer.action = typeAction::Landing;
+        answer.action = typeAction::Takeoff;
 
         if(msg.plane.getAddWeight() > msg.plane.getMaxAddWeight())
         {
@@ -142,9 +139,9 @@ anwManager manager::getResultManager(message<cessnaM> msg)
     anwManager answer;
     answer.model = modelPlane::CessnaCitation;
 
-    if(msg.action == typeAction::Takeoff)
+    if(msg.action == typeAction::Landing)
     {
-        answer.action = typeAction::Takeoff;
+        answer.action = typeAction::Landing;
 
         if(this->windSpeed >= 12.f && msg.plane.getPerLvlFuel() > 10)
         {
@@ -165,7 +162,7 @@ anwManager manager::getResultManager(message<cessnaM> msg)
     }
     else
     {
-        answer.action = typeAction::Landing;
+        answer.action = typeAction::Takeoff;
 
         if(msg.plane.getAddWeight() > msg.plane.getMaxAddWeight())
         {
@@ -215,9 +212,9 @@ anwManager manager::getResultManager(message<cirrus> msg)
     anwManager answer;
     answer.model = modelPlane::CirrusSR;
 
-    if(msg.action == typeAction::Takeoff)
+    if(msg.action == typeAction::Landing)
     {
-        answer.action = typeAction::Takeoff;
+        answer.action = typeAction::Landing;
 
         if(this->windSpeed >= 9.f && msg.plane.getPerLvlFuel() > 10)
         {
@@ -238,7 +235,7 @@ anwManager manager::getResultManager(message<cirrus> msg)
     }
     else
     {
-        answer.action = typeAction::Landing;
+        answer.action = typeAction::Takeoff;
 
         if(msg.plane.getAddWeight() > msg.plane.getMaxAddWeight())
         {
@@ -292,7 +289,6 @@ void manager::update(RenderWindow *window, Sprite background, Text &text)
     string statusWeather = "Weather\n";
     
 
-    this->runwayBusy = false;
     this->windSpeed += distribution(generator);
     this->windSpeed = abs(this->windSpeed);
 
