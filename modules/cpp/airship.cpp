@@ -528,16 +528,16 @@ message<boeing_787> boeing_787::generateMsg()
     string typeAction = distribution(generator) % 2 == 0 ? "takeoff" : "landing";
     string strMessage = "Request on " + typeAction + "\n" + "Airship model: " + this->name + "\n";
 
-    if (typeAction == "takeoff")
+    if (typeAction == "landing")
     {
          strMessage += "Level fuel in percent: " + to_string(this->getPerLvlFuel()) + "%\n";
-         msg.action = typeAction::Takeoff;
+         msg.action = typeAction::Landing;
     }
     else
     {
         strMessage += "Additional weight = " + to_string(this->addWeight) + " is "
             + to_string(this->maxAddWeight) + "\n"; 
-        msg.action = typeAction::Landing;
+        msg.action = typeAction::Takeoff;
 }
 
     msg.generateMsg = strMessage;
@@ -560,16 +560,16 @@ message<cessnaM> cessnaM::generateMsg()
     string typeAction = distribution(generator) % 2 == 0 ? "takeoff" : "landing";
     string strMessage = "Request on " + typeAction + "\n" + "Airship model: " + this->name + "\n";
 
-    if (typeAction == "takeoff")
+    if (typeAction == "landing")
     {
          strMessage += "Level fuel in percent: " + to_string(this->getPerLvlFuel()) + "%\n";
-         msg.action = typeAction::Takeoff;
+         msg.action = typeAction::Landing;
     }
     else
     {
         strMessage += "Additional weight = " + to_string(this->addWeight) + " is "
             + to_string(this->maxAddWeight) + "\n"; 
-        msg.action = typeAction::Landing;
+        msg.action = typeAction::Takeoff;
 }
 
     msg.generateMsg = strMessage;
@@ -592,16 +592,16 @@ message<cirrus> cirrus::generateMsg()
     string typeAction = distribution(generator) % 2 == 0 ? "takeoff" : "landing";
     string strMessage = "Request on " + typeAction + "\n" + "Airship model: " + this->name + "\n";
 
-    if (typeAction == "takeoff")
+    if (typeAction == "landing")
     {
          strMessage += "Level fuel in percent: " + to_string(this->getPerLvlFuel()) + "%\n";
-         msg.action = typeAction::Takeoff;
+         msg.action = typeAction::Landing;
     }
     else
     {
         strMessage += "Additional weight = " + to_string(this->addWeight) + " is "
             + to_string(this->maxAddWeight) + "\n"; 
-        msg.action = typeAction::Landing;
+        msg.action = typeAction::Takeoff;
 }
 
     msg.generateMsg = strMessage;
