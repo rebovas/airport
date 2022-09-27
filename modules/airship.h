@@ -9,6 +9,20 @@ using namespace std;
 
 enum typeAction {Takeoff, Landing};
 
+class visibleElm
+{
+    private:
+        Sprite* stackSprite;
+        int currIndxSprite;
+        Text* stackText;
+        int currIndxTexture;
+    public:
+        visibleElm();
+        void add(Sprite& sprite);
+        void add(Text& text);
+        void reload(RenderWindow *window);
+};
+
 template<typename typePlane>
 struct message
 {
@@ -33,8 +47,8 @@ class airship
         int currentLvlFuel;
 
     public:
-        virtual int takeoff(RenderWindow *window, Sprite background, Text text) = 0;
-        virtual int landing(RenderWindow *window, Sprite background, Text text) = 0;
+        virtual int takeoff(RenderWindow *window, visibleElm elms) = 0;
+        virtual int landing(RenderWindow *window, visibleElm elms) = 0;
         void setSprite(Sprite sprite);
         Sprite getSprite();
         void setIndex(int index);
@@ -51,8 +65,8 @@ class boeing_787 : public airship
     public:
         boeing_787();
         boeing_787(Sprite sprite, Texture texture, int index);
-        int takeoff(RenderWindow *window, Sprite background, Text text) override;
-        int landing(RenderWindow *window, Sprite background, Text text) override;
+        int takeoff(RenderWindow *window, visibleElm elms) override;
+        int landing(RenderWindow *window, visibleElm elms) override;
         message<boeing_787> generateMsg();
 };
 
@@ -61,8 +75,8 @@ class cessnaM : public airship
     public:
         cessnaM();
         cessnaM(Sprite sprite, Texture texture, int index);
-        int takeoff(RenderWindow *window, Sprite background, Text text) override;
-        int landing(RenderWindow *window, Sprite background, Text text) override;
+        int takeoff(RenderWindow *window, visibleElm elms) override;
+        int landing(RenderWindow *window, visibleElm elms) override;
         message<cessnaM> generateMsg();
 };
 
@@ -72,7 +86,7 @@ class cirrus : public airship
     public:
         cirrus();
         cirrus(Sprite sprite, Texture texture, int index);
-        int takeoff(RenderWindow *window, Sprite background, Text text) override;
-        int landing(RenderWindow *window, Sprite background, Text text) override;
+        int takeoff(RenderWindow *window, visibleElm elms) override;
+        int landing(RenderWindow *window, visibleElm elms) override;
         message<cirrus> generateMsg();
 };

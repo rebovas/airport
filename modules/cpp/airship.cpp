@@ -150,23 +150,17 @@ cirrus::cirrus(Sprite sprite, Texture texture, int index)
     this->sprite.setTexture(this->texture);
 };
 
-int boeing_787::landing(RenderWindow *window, Sprite background, Text text)
+int boeing_787::landing(RenderWindow *window, visibleElm elms)
 {
-    ClearPolEvent(window);
+    elms.reload(window);
     this->sprite.setPosition(-300, 550);
-    window->clear();
-    window->draw(background);
-    window->draw(text);
     window->draw(this->sprite);
     window->display();
 
     for(int i = 1; i <= 600; i++)
     {
-        ClearPolEvent(window);
         this->sprite.move(1.0f, 0.09f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -175,11 +169,8 @@ int boeing_787::landing(RenderWindow *window, Sprite background, Text text)
     float kfSpeed = 1.f;
     for(int i = 1; i <= 1900; i++)
     {
-        ClearPolEvent(window);
         this->sprite.move(1.0f * kfSpeed, 0.f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
         kfSpeed *= 0.99892f;
@@ -187,10 +178,7 @@ int boeing_787::landing(RenderWindow *window, Sprite background, Text text)
 
     for(int i = 1; i <= 300; i++)
     {
-        ClearPolEvent(window);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -200,23 +188,17 @@ int boeing_787::landing(RenderWindow *window, Sprite background, Text text)
     return 0;
 };
 
-int cessnaM::landing(RenderWindow *window, Sprite background, Text text)
+int cessnaM::landing(RenderWindow *window, visibleElm elms)
 {
-    ClearPolEvent(window);
     this->sprite.setPosition(-350, 580);
-    window->clear();
-    window->draw(background);
-    window->draw(text);
+    elms.reload(window);
     window->draw(this->sprite);
     window->display();
 
     for(int i = 1; i <= 600; i++)
     {
-        ClearPolEvent(window);
         this->sprite.move(1.f, 0.15f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -224,11 +206,8 @@ int cessnaM::landing(RenderWindow *window, Sprite background, Text text)
     float kfSpeed = 1.f;
     for(int i = 1; i <= 2000; i++)
     {
-        ClearPolEvent(window);
         this->sprite.move(0.9f * kfSpeed, 0.f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
         kfSpeed *= 0.99892f;
@@ -236,10 +215,7 @@ int cessnaM::landing(RenderWindow *window, Sprite background, Text text)
 
     for(int i = 1; i <= 300; i++)
     {
-        ClearPolEvent(window);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -249,23 +225,17 @@ int cessnaM::landing(RenderWindow *window, Sprite background, Text text)
     return 0;
 };
 
-int cirrus::landing(RenderWindow *window, Sprite background, Text text)
+int cirrus::landing(RenderWindow *window, visibleElm elms)
 {
-    ClearPolEvent(window);
     this->sprite.setPosition(-350, 640);
-    window->clear();
-    window->draw(background);
-    window->draw(text);
+    elms.reload(window);
     window->draw(this->sprite);
     window->display();
 
     for(int i = 1; i <= 800; i++)
     {
-        ClearPolEvent(window);
         this->sprite.move(1.f, 0.1f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -273,23 +243,17 @@ int cirrus::landing(RenderWindow *window, Sprite background, Text text)
     float kfSpeed = 1.f;
     for(int i = 1; i <= 2000; i++)
     {
-        ClearPolEvent(window);
         this->sprite.move(0.9f * kfSpeed, 0.f);
-        window->clear();
-        window->draw(background);
+        elms.reload(window);
         window->draw(this->sprite);
-        window->draw(text);
         window->display();
         kfSpeed *= 0.99892f;
     }
 
     for(int i = 1; i <= 300; i++)
     {
-        ClearPolEvent(window);
-        window->clear();
-        window->draw(background);
+        elms.reload(window);
         window->draw(this->sprite);
-        window->draw(text);
         window->display();
     }
 
@@ -298,22 +262,16 @@ int cirrus::landing(RenderWindow *window, Sprite background, Text text)
     return 0;
 };
 
-int boeing_787::takeoff(RenderWindow *window, Sprite background, Text text)
+int boeing_787::takeoff(RenderWindow *window, visibleElm elms)
 {
-    ClearPolEvent(window);
     this->sprite.setPosition(0, 610);
-    window->clear();
-    window->draw(background);
-    window->draw(text);
+    elms.reload(window);
     window->draw(this->sprite);
     window->display();
 
     for(int i = 1; i <= 150; i++)
     {
-        ClearPolEvent(window);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -321,11 +279,8 @@ int boeing_787::takeoff(RenderWindow *window, Sprite background, Text text)
     float kfSpeed = 1.f;
     for(int i = 1; i <= 1600; i++)
     {
-        ClearPolEvent(window);
         this->sprite.move(0.2f * kfSpeed, 0.f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
         kfSpeed *= 1.001f;
@@ -333,12 +288,9 @@ int boeing_787::takeoff(RenderWindow *window, Sprite background, Text text)
 
     for(int i = 1; i <= 800; i++)
     {
-        ClearPolEvent(window);
         kfSpeed *= 1.0008f;
         this->sprite.move(0.23f * kfSpeed, -0.07f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -349,22 +301,16 @@ int boeing_787::takeoff(RenderWindow *window, Sprite background, Text text)
 };
 
 
-int cessnaM::takeoff(RenderWindow *window, Sprite background, Text text)
+int cessnaM::takeoff(RenderWindow *window, visibleElm elms)
 {
-    ClearPolEvent(window);
     this->sprite.setPosition(0, 670);
-    window->clear();
-    window->draw(background);
-    window->draw(text);
+    elms.reload(window);
     window->draw(this->sprite);
     window->display();
 
     for(int i = 1; i <= 150; i++)
     {
-        ClearPolEvent(window);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -372,11 +318,8 @@ int cessnaM::takeoff(RenderWindow *window, Sprite background, Text text)
     float kfSpeed = 1.f;
     for(int i = 1; i <= 1600; i++)
     {
-        ClearPolEvent(window);
         this->sprite.move(0.2f * kfSpeed, 0.f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
         kfSpeed *= 1.001f;
@@ -384,12 +327,9 @@ int cessnaM::takeoff(RenderWindow *window, Sprite background, Text text)
 
     for(int i = 1; i <= 800; i++)
     {
-        ClearPolEvent(window);
         kfSpeed *= 1.0001f;
         this->sprite.move(0.25f * kfSpeed, -0.07f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -399,21 +339,16 @@ int cessnaM::takeoff(RenderWindow *window, Sprite background, Text text)
     return 0;
 };
 
-int cirrus::takeoff(RenderWindow *window, Sprite background, Text text)
+int cirrus::takeoff(RenderWindow *window, visibleElm elms)
 {
     this->sprite.setPosition(0, 720);
-    window->clear();
-    window->draw(background);
-    window->draw(text);
+    elms.reload(window);
     window->draw(this->sprite);
     window->display();
 
     for(int i = 1; i <= 150; i++)
     {
-        ClearPolEvent(window);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -421,11 +356,8 @@ int cirrus::takeoff(RenderWindow *window, Sprite background, Text text)
     float kfSpeed = 1.f;
     for(int i = 1; i <= 2000; i++)
     {
-        ClearPolEvent(window);
         this->sprite.move(0.11f * kfSpeed, 0.f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
         kfSpeed *= 1.001f;
@@ -433,12 +365,9 @@ int cirrus::takeoff(RenderWindow *window, Sprite background, Text text)
 
     for(int i = 1; i <= 1300; i++)
     {
-        ClearPolEvent(window);
         kfSpeed *= 1.00001f;
         this->sprite.move(0.11f * kfSpeed, -0.05f);
-        window->clear();
-        window->draw(background);
-        window->draw(text);
+        elms.reload(window);
         window->draw(this->sprite);
         window->display();
     }
@@ -602,13 +531,53 @@ message<cirrus> cirrus::generateMsg()
         strMessage += "Additional weight = " + to_string(this->addWeight) + " is "
             + to_string(this->maxAddWeight) + "\n"; 
         msg.action = typeAction::Takeoff;
-}
+    }
 
     msg.generateMsg = strMessage;
     msg.plane = *this;
 
     cout << msg.generateMsg;
     return msg;
+};
 
-}
+visibleElm::visibleElm()
+{
+    this->stackSprite = new Sprite[10];
+    this->stackText = new Text[10];
+    this->currIndxSprite = -1;
+    this->currIndxTexture = -1;
+};
+
+void visibleElm::add(Sprite& sprite)
+{
+    if(this->currIndxSprite < 9)
+    {
+        this->stackSprite[++this->currIndxSprite] = sprite;
+    }
+};
+
+void visibleElm::add(Text& text)
+{
+    if(this->currIndxTexture < 9)
+    {
+        this->stackText[++this->currIndxTexture] = text;
+    }
+};
+
+void visibleElm::reload(RenderWindow *window)
+{
+    ClearPolEvent(window);
+    window->clear();  
+
+    for(int i = this->currIndxSprite; i >= 0; i--)
+    {
+        window->draw(this->stackSprite[i]);
+    }
+
+    for(int i = this->currIndxTexture; i >= 0; i--)
+    {
+        window->draw(this->stackText[i]);
+    }
+    ClearPolEvent(window);
+};
 

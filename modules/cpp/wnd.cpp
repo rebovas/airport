@@ -44,6 +44,7 @@ int mapping::createWindow()
     Clock clock, clock2, clock3;
     Time time = clock.restart(), time2 = clock2.restart(), time3 = clock3.restart();
     anwManager anwMan, anwManSaved;
+    visibleElm elms;
 
     if(!texture.loadFromFile((string)PATHIMGS + BGFILENAME))
     {
@@ -74,6 +75,9 @@ int mapping::createWindow()
     objs.addElement(window, (string)PATHIMGS + "White small plane.png");
     cirrus cirrusSR(objs.getSprite(2), objs.getTexture(), 2);
     
+    elms.add(text);
+    elms.add(bg);
+
     while (window->isOpen())
     {
         time3 = clock3.getElapsedTime();
@@ -126,21 +130,21 @@ int mapping::createWindow()
             {
                 case modelPlane::Boeing787:
                 {
-                    anwManSaved.action == typeAction::Landing ? boeing.landing(window, bg, text) : boeing.takeoff(window, bg, text);
+                    anwManSaved.action == typeAction::Landing ? boeing.landing(window, elms) : boeing.takeoff(window, elms);
                     manager.chngStatusRunway(0);
                     boeing.updateVarParam();
                     break;
                 }
                 case modelPlane::CessnaCitation:
                 {
-                    anwManSaved.action == typeAction::Landing ? cessnaJet.landing(window, bg, text) : cessnaJet.takeoff(window, bg, text);
+                    anwManSaved.action == typeAction::Landing ? cessnaJet.landing(window, elms) : cessnaJet.takeoff(window, elms);
                     manager.chngStatusRunway(0);
                     cessnaJet.updateVarParam();
                     break;
                 }
                 case modelPlane::CirrusSR:
                 {
-                    anwManSaved.action == typeAction::Landing ? cirrusSR.landing(window, bg, text) : cirrusSR.takeoff(window, bg, text);
+                    anwManSaved.action == typeAction::Landing ? cirrusSR.landing(window, elms) : cirrusSR.takeoff(window, elms);
                     manager.chngStatusRunway(0);
                     cirrusSR.updateVarParam();
                     break;
@@ -176,3 +180,4 @@ Sprite mapping::getSprite(int index)
 {
     return this->elements.at(0);
 };
+
